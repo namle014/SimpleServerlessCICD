@@ -1,5 +1,28 @@
 {
+  "name": "simplecicd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "express": "^5.1.0"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/test/**/*.test.js"
+    ]
+  },
+  "directories": {
+    "test": "test"
   }
 }
