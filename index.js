@@ -1,11 +1,19 @@
-const express = require("express");
-const app = express();
-const port = 3000;
-
-app.get("/", (req, res) => {
-    res.send("Hello from Node.js on Windows!");
-});
-
-app.listen(port, () => {
-    console.log(`App is running at http://localhost:${port}`);
-});
+exports.lambdaHandler = async (event, context) => {
+  try {
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: "Hello World Omega333433!",
+      }),
+      //  i love tiktok 2
+    };
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        message: "Internal Server Error",
+        error: err,
+      }),
+    };
+  }
+};
