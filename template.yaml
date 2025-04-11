@@ -1,0 +1,33 @@
+# Note:  Báo lỗi syntax kệ nó nha vẫn run được
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Simple serverless app with Lambda and API Gateway
+
+Globals:
+    Function:
+        Runtime: nodejs18.x
+
+Resources:
+    HelloWorldFunction:
+        Type: AWS::Serverless::Function
+        Properties:
+            Handler: app.lambdaHandler
+            CodeUri: src/
+            Description: A simple Lambda function
+            Events:
+                ApiEvent:
+                    Type: Api
+                    Properties:
+                        Path: /hello
+                        Method: GET
+            AutoPublishAlias: live
+            DeploymentPreference:
+                Type: Linear10PercentEvery1Minute
+
+Outputs:
+    ApiUrl:
+        Description: URL of the API Gateway endpoint
+        Value: !Sub https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello
+    LambdaFunctionArn:
+        Description: ARN of the Lambda function
+        Value: !GetAtt HelloWorldFunction.Arn

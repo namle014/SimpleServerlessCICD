@@ -1,0 +1,28 @@
+version = 0.1
+
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "simple-serverless-cicd-Uit"
+s3_bucket = "aws-sam-cli-managed-uit"  # Updated to new bucket name
+s3_prefix = "simple-serverless-cicd-Uit"
+region = "ap-southeast-1"
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+allow_iam_role_creation = true
+disable_rollback = false
+image_repositories = []
+# Removed resolve_s3 = true since we have specific bucket
+
+[production]
+[production.deploy]
+[production.deploy.parameters]
+stack_name = "simple-serverless-cicd-prod"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-ief6d0sjuinv"  # Same bucket for production
+s3_prefix = "simple-serverless-cicd-prod"
+region = "ap-southeast-1"
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+allow_iam_role_creation = true
+disable_rollback = false
+image_repositories = []
