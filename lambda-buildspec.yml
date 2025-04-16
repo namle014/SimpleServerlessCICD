@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+    install:
+        runtime-versions:
+            nodejs: 18
+        commands:
+            - npm install
+
+    build:
+        commands:
+            - sam build
+            - echo "ARTIFACT_BUCKET is $ARTIFACT_BUCKET"
+            - sam package --s3-bucket $ARTIFACT_BUCKET --output-template-file packaged.yaml
+            - sam deploy --template-file packaged.yaml --stack-name $STACK_NAME --capabilities CAPABILITY_IAM --no-confirm-changeset --fail-on-empty-changeset false --force-upload --region us-east-1 --s3-bucket $ARTIFACT_BUCKET || echo "No changes"
+    post_build:
+        commands:
+            - echo "Build completed"
+
+artifacts:
+    files:
+        - packaged.yaml
+
+cache:
+    paths:
+        - "node_modules/**/*"
