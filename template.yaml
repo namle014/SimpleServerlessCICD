@@ -12,7 +12,7 @@ Resources:
         Type: AWS::Serverless::Function
         Properties:
             Handler: app.lambdaHandler
-            CodeUri: src/
+            CodeUri: .
             Description: A simple Lambda function
             Events:
                 ApiEvent:
